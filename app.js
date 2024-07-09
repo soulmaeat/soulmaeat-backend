@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const registerRouter = require("./router/registerRouter");
 const userRouter = require("./router/userRouter");
+const postRouter = require("./router/postRouter");
 
 const port = process.env.PORT;
 const uri = process.env.MONGO_CONNECTION;
@@ -18,6 +19,7 @@ app.use(cors());
 // 라우터 사용
 app.use("/api", registerRouter);
 app.use("/api", userRouter);
+app.use("/api", postRouter);
 
 mongoose
   .connect(uri)

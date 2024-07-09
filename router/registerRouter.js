@@ -13,20 +13,20 @@ router.post("/register", async (req, res) => {
     const {
       email,
       password,
+      userId,
       gender,
       age,
       userPreference,
-      userLike,
       userSoulpay,
     } = req.body;
     const hashedPassword = await hashPassword(password);
     const newUser = new User({
       email: email,
       password: hashedPassword,
+      userId: userId,
       gender: gender,
       age: age,
       userPreference: userPreference,
-      userLike: userLike,
       userSoulpay: userSoulpay,
     });
 

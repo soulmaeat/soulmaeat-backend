@@ -7,24 +7,55 @@ const uuid = () => {
   return tokens[2] + tokens[1] + tokens[0] + tokens[3] + tokens[4];
 };
 
-const preferenceSchema = new Schema({
-  PreferenceList: {
-    type: [String],
-    default: null,
-  },
-});
-
 const likeSchema = new Schema({
   likeList: {
     type: [String],
-    default: null,
+    default: [],
+  },
+});
+
+const postSchema = new Schema({
+  userId: {
+    type: String,
+    default: "",
+  },
+  title: {
+    type: String,
+    default: "",
+  },
+  description: {
+    type: String,
+    default: "",
+  },
+  selectedPayment: {
+    type: String,
+    default: "",
+  },
+  selectPlace: {
+    type: String,
+    default: "",
+  },
+  selectedKeyword: {
+    type: [likeSchema],
+    default: [],
+  },
+  createAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const preferenceSchema = new Schema({
+  PreferenceList: {
+    type: [String],
+    default: [],
   },
 });
 
 const chargeSchema = new Schema({
   payment: {
     type: Number,
-    default: null,
+    default: 0,
   },
   paymentId: {
     type: String,
@@ -41,6 +72,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   gender: {
     type: String,
     default: null,
@@ -51,10 +86,6 @@ const userSchema = new Schema({
   },
   userPreference: {
     type: [preferenceSchema],
-    default: [],
-  },
-  userLike: {
-    type: [likeSchema],
     default: [],
   },
   userSoulpay: {
@@ -72,8 +103,9 @@ const userSchema = new Schema({
 });
 
 const User = mongoose.model("User", userSchema);
-const Preference = mongoose.model("preference", preferenceSchema);
-const Like = mongoose.model("like", likeSchema);
-const Charge = mongoose.model("charge", chargeSchema);
+const Preference = mongoose.model("Preference", preferenceSchema);
+const Like = mongoose.model("Like", likeSchema);
+const Charge = mongoose.model("Charge", chargeSchema);
+const Post = mongoose.model("Write", postSchema);
 
-module.exports = { User, Preference, Like, Charge };
+module.exports = { User, Preference, Like, Charge, Post };
