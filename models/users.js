@@ -17,39 +17,71 @@ const likeSchema = new Schema({
 const postSchema = new Schema({
   postId: {
     type: String,
-    default: "",
+    default: null,
   },
   author: {
     type: String,
-    default: "",
+    default: null,
   },
   age: {
     type: String,
-    default: "",
+    default: null,
   },
   gender: {
     type: String,
-    default: "",
+    default: null,
   },
   title: {
     type: String,
-    default: "",
+    default: null,
   },
   description: {
     type: String,
-    default: "",
+    default: null,
   },
   selectedPayment: {
     type: String,
-    default: "",
+    default: null,
   },
   selectPlace: {
     type: String,
-    default: "",
+    default: null,
+  },
+  addressName: {
+    type: String,
+    default: null,
+  },
+  categoryName: {
+    type: String,
+    default: null,
+  },
+  phone: {
+    type: String,
+    default: null,
+  },
+  placeName: {
+    type: String,
+    default: null,
+  },
+  placeUrl: {
+    type: String,
+    default: null,
+  },
+  roadAddressName: {
+    type: String,
+    default: null,
+  },
+  x: {
+    type: String,
+    default: null,
+  },
+  y: {
+    type: String,
+    default: null,
   },
   joinedPeople: {
     type: Number,
-    default: "",
+    default: null,
   },
   selectedKeyword: {
     type: [likeSchema],
@@ -100,38 +132,6 @@ const userSchema = new Schema({
     type: Number,
     default: null,
   },
-  addressName: {
-    type: String,
-    required: true,
-  },
-  categoryName: {
-    type: String,
-    default: null,
-  },
-  phone: {
-    type: String,
-    default: null,
-  },
-  placeName: {
-    type: String,
-    required: true,
-  },
-  placeUrl: {
-    type: String,
-    default: null,
-  },
-  roadAddressName: {
-    type: String,
-    default: null,
-  },
-  x: {
-    type: String,
-    default: null,
-  },
-  y: {
-    type: String,
-    default: null,
-  },
   userPreference: {
     type: [preferenceSchema],
     default: [],
@@ -139,10 +139,6 @@ const userSchema = new Schema({
   userSoulpay: {
     type: [chargeSchema],
     default: [],
-  },
-  lastUpdated: {
-    type: Date,
-    default: null,
   },
   joinedAt: {
     type: Date,
