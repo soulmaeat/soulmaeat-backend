@@ -92,6 +92,38 @@ const userSchema = new Schema({
     type: Number,
     default: null,
   },
+  addressName: {
+    type: String,
+    required: true,
+  },
+  categoryName: {
+    type: String,
+    default: null,
+  },
+  phone: {
+    type: String,
+    default: null,
+  },
+  placeName: {
+    type: String,
+    required: true,
+  },
+  placeUrl: {
+    type: String,
+    default: null,
+  },
+  roadAddressName: {
+    type: String,
+    default: null,
+  },
+  x: {
+    type: String,
+    default: null,
+  },
+  y: {
+    type: String,
+    default: null,
+  },
   userPreference: {
     type: [preferenceSchema],
     default: [],

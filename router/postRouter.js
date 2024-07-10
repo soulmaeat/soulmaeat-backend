@@ -12,6 +12,14 @@ router.post("/post", async (req, res) => {
       selectPlace,
       selectedKeyword,
       joinedPeople,
+      addressName,
+      categoryName,
+      phone,
+      placeName,
+      placeUrl,
+      roadAddressName,
+      x,
+      y,
       createAt,
     } = req.body;
 
@@ -23,6 +31,14 @@ router.post("/post", async (req, res) => {
       selectPlace,
       selectedKeyword,
       joinedPeople,
+      addressName,
+      categoryName,
+      phone,
+      placeName,
+      placeUrl,
+      roadAddressName,
+      x,
+      y,
       createAt
     );
 
@@ -35,6 +51,14 @@ router.post("/post", async (req, res) => {
       selectedKeyword: selectedKeyword,
       joinedPeople: joinedPeople,
       createAt: createAt,
+      addressName: addressName,
+      categoryName: categoryName,
+      phone: phone,
+      placeName: placeName,
+      placeUrl: placeUrl,
+      roadAddressName: roadAddressName,
+      x: x,
+      y: y,
     });
 
     await newPost.save();
