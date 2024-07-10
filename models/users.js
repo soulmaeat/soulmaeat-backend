@@ -39,6 +39,10 @@ const postSchema = new Schema({
     type: String,
     default: "",
   },
+  joinedPeople: {
+    type: Number,
+    default: "",
+  },
   selectedKeyword: {
     type: [likeSchema],
     default: [],

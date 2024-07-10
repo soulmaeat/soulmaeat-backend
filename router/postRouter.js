@@ -11,6 +11,7 @@ router.post("/post", async (req, res) => {
       selectedPayment,
       selectPlace,
       selectedKeyword,
+      joinedPeople,
       createAt,
     } = req.body;
 
@@ -21,6 +22,7 @@ router.post("/post", async (req, res) => {
       selectedPayment,
       selectPlace,
       selectedKeyword,
+      joinedPeople,
       createAt
     );
 
@@ -31,6 +33,7 @@ router.post("/post", async (req, res) => {
       selectedPayment: selectedPayment,
       selectPlace: selectPlace,
       selectedKeyword: selectedKeyword,
+      joinedPeople: joinedPeople,
       createAt: createAt,
     });
 
