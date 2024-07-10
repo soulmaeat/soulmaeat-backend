@@ -5,7 +5,10 @@ require("dotenv").config();
 router.post("/post", async (req, res) => {
   try {
     const {
-      userId,
+      postId,
+      author,
+      age,
+      gender,
       title,
       description,
       selectedPayment,
@@ -24,7 +27,10 @@ router.post("/post", async (req, res) => {
     } = req.body;
 
     console.log(
-      userId,
+      postId,
+      author,
+      age,
+      gender,
       title,
       description,
       selectedPayment,
@@ -43,7 +49,10 @@ router.post("/post", async (req, res) => {
     );
 
     const newPost = new Post({
-      userId: userId,
+      postId: postId,
+      author: author,
+      age: age,
+      gender: gender,
       title: title,
       description: description,
       selectedPayment: selectedPayment,
@@ -66,6 +75,33 @@ router.post("/post", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "내부 서버 오류" });
+  }
+});
+
+router.get("/getpost", async (req, res) => {
+  try {
+    const { email } = req.params;
+    console.log("데이터 요청 받음:", {
+      email: email,
+    });
+
+    const post = await Post.findOne({
+      email: email,
+    });
+    console.log("해당 게시글 찾음:", post);
+
+    if (!post) {
+      return res.status(404).json({ message: "post not found" });
+    }
+
+    const result = {
+      post: post,
+    };
+    console.log("데이터:", result);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
