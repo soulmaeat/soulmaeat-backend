@@ -15,6 +15,10 @@ const likeSchema = new Schema({
 });
 
 const postSchema = new Schema({
+  postId: {
+    type: String,
+    default: () => uuid(),
+  },
   userId: {
     type: String,
     default: "",
