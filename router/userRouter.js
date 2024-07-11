@@ -94,7 +94,7 @@ router.put("/edit", authenticateToken, async (req, res) => {
 
     const updatedUser = await User.findOneAndUpdate(
       { email },
-      { $set: introduce },
+      { $set: { introduce } },
       { new: true }
     );
 
