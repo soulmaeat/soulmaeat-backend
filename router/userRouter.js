@@ -86,17 +86,13 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.put("/", authenticateToken, async (req, res) => {
+router.put("/edit", authenticateToken, async (req, res) => {
   try {
-    const user = req.body;
-
-    console.log("user", user);
+    const { email, introduce } = req.body;
 
     const updatedUser = await User.findOneAndUpdate(
-      {
-        email: user.email,
-      },
-      user,
+      { email },
+      { $set: introduce },
       { new: true }
     );
 
@@ -106,7 +102,7 @@ router.put("/", authenticateToken, async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "사용자 정보가 업데이트되었습니다.", user });
+      .json({ message: "사용자 정보가 업데이트되었습니다.", introduce });
   } catch (error) {
     console.error(error);
     res.status(500).json({
