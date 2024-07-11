@@ -10,8 +10,7 @@ async function hashPassword(password) {
 
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, userId, gender, age, introduce, userPreference } =
-      req.body;
+    const { email, password, userId, gender, age } = req.body;
     const hashedPassword = await hashPassword(password);
     const newUser = new User({
       email: email,
@@ -19,12 +18,18 @@ router.post("/register", async (req, res) => {
       userId: userId,
       gender: gender,
       age: age,
-      introduce: introduce,
-      userPreference: userPreference,
     });
 
-    await newUser.save();
+    const user = await User.findOne({
+      email: email,
+    });
+    console.log("사용자 찾음:", user);
 
+    if (user) {
+      res.status(404).json({ message: "중복된 유저입니다." });
+    }
+
+    await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
     console.error(error);
@@ -34,7 +39,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/preference/:userId", async (req, res) => {
   try {
-    let { userPreference } = req.body;
+    let { userPreference, introduce } = req.body;
     const userId = req.params.userId;
 
     // userPreference가 문자열 배열인 경우 이를 적절한 형식으로 변환
@@ -55,7 +60,7 @@ router.post("/preference/:userId", async (req, res) => {
 
     const updatedUser = await User.findOneAndUpdate(
       { userId: userId },
-      { userPreference: userPreference },
+      { userPreference: userPreference, introduce: introduce },
       { new: true }
     );
 
