@@ -132,6 +132,10 @@ const userSchema = new Schema({
     type: Number,
     default: null,
   },
+  introduce: {
+    type: String,
+    default: null,
+  },
   userPreference: {
     type: [preferenceSchema],
     default: [],
