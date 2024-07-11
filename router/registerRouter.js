@@ -15,7 +15,7 @@ router.post("/check", async (req, res) => {
     const id = await User.findOne({
       userId: userId,
     });
-    console.log("중복된 아이디:", id);
+    console.log("중복된 아이디:");
 
     if (id) {
       res.status(404).json({ message: "중복된 아이디입니다." });
