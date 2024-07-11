@@ -129,7 +129,7 @@ const userSchema = new Schema({
     default: null,
   },
   age: {
-    type: Number,
+    type: String,
     default: null,
   },
   introduce: {
