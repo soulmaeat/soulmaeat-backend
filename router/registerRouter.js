@@ -8,6 +8,25 @@ async function hashPassword(password) {
   return hashedPassword;
 }
 
+router.post("/check", async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    const id = await User.findOne({
+      userId: userId,
+    });
+    console.log("중복된 아이디:", id);
+
+    if (id) {
+      res.status(404).json({ message: "중복된 아이디입니다." });
+    }
+    res.status(201).json({ message: "중복되지 않은 아이디입니다." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "내부 서버 오류" });
+  }
+});
+
 router.post("/register", async (req, res) => {
   try {
     const { email, password, userId, gender, age } = req.body;
