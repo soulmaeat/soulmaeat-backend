@@ -17,9 +17,9 @@ router.post("/check", async (req, res) => {
     });
 
     if (id) {
-      res.status(404).json({ message: "중복된 아이디입니다." });
+      return res.status(404).json({ message: "중복된 아이디입니다." });
     } else {
-      res.status(201).json({ message: "중복되지 않은 아이디입니다." });
+      return res.status(201).json({ message: "중복되지 않은 아이디입니다." });
     }
   } catch (error) {
     console.error(error);
@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
     console.log("사용자 찾음:", user);
 
     if (user) {
-      res.status(404).json({ message: "중복된 유저입니다." });
+      return res.status(404).json({ message: "중복된 유저입니다." });
     }
 
     await newUser.save();
