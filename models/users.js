@@ -132,6 +132,10 @@ const userSchema = new Schema({
     type: String,
     default: null,
   },
+  address: {
+    type: String,
+    default: null,
+  },
   introduce: {
     type: String,
     default: null,
@@ -140,9 +144,13 @@ const userSchema = new Schema({
     type: [preferenceSchema],
     default: [],
   },
-  userSoulpay: {
+  soulpay: {
     type: [chargeSchema],
     default: [],
+  },
+  joinCount: {
+    type: Number,
+    default: null,
   },
   joinedAt: {
     type: Date,

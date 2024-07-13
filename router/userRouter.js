@@ -86,6 +86,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// 자기소개 수정
 router.put("/edit", authenticateToken, async (req, res) => {
   try {
     const { email, introduce } = req.body;
@@ -105,6 +106,90 @@ router.put("/edit", authenticateToken, async (req, res) => {
     res
       .status(200)
       .json({ message: "사용자 정보가 업데이트되었습니다.", introduce });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "서버 오류: 사용자 정보를 업데이트할 수 없습니다.",
+    });
+  }
+});
+
+// 유저 주소 추가
+router.put("/addaddres", authenticateToken, async (req, res) => {
+  try {
+    const { email, address } = req.body;
+
+    console.log(address);
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { $set: { address } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "사용자를 찾을 수 없습니다." });
+    }
+
+    res
+      .status(200)
+      .json({ message: "사용자 정보가 업데이트되었습니다.", address });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "서버 오류: 사용자 정보를 업데이트할 수 없습니다.",
+    });
+  }
+});
+
+// 소울 페이 금액 추가
+router.put("/charge", authenticateToken, async (req, res) => {
+  try {
+    const { email, soulpay } = req.body;
+
+    console.log(soulpay);
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { $set: { soulpay } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "사용자를 찾을 수 없습니다." });
+    }
+
+    res
+      .status(200)
+      .json({ message: "사용자 정보가 업데이트되었습니다.", soulpay });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "서버 오류: 사용자 정보를 업데이트할 수 없습니다.",
+    });
+  }
+});
+
+// 참가 인원
+router.put("/join", authenticateToken, async (req, res) => {
+  try {
+    const { email, joinCount } = req.body;
+
+    console.log(joinCount);
+
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { $set: { joinCount } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "사용자를 찾을 수 없습니다." });
+    }
+
+    res
+      .status(200)
+      .json({ message: "사용자 정보가 업데이트되었습니다.", joinCount });
   } catch (error) {
     console.error(error);
     res.status(500).json({
