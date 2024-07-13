@@ -74,9 +74,7 @@ router.post("/login", async (req, res) => {
       code: 200,
       message: "토큰이 생성되었습니다.",
       token: token,
-      email: user.email,
-      gender: user.gender,
-      age: user.age,
+      userId: user.userId,
     });
   } catch (error) {
     return res.status(419).json({
@@ -162,34 +160,6 @@ router.put("/charge", authenticateToken, async (req, res) => {
     res
       .status(200)
       .json({ message: "사용자 정보가 업데이트되었습니다.", soulpay });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      error: "서버 오류: 사용자 정보를 업데이트할 수 없습니다.",
-    });
-  }
-});
-
-// 참가 인원
-router.put("/join", authenticateToken, async (req, res) => {
-  try {
-    const { email, joinCount } = req.body;
-
-    console.log(joinCount);
-
-    const updatedUser = await User.findOneAndUpdate(
-      { email },
-      { $set: { joinCount } },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).json({ error: "사용자를 찾을 수 없습니다." });
-    }
-
-    res
-      .status(200)
-      .json({ message: "사용자 정보가 업데이트되었습니다.", joinCount });
   } catch (error) {
     console.error(error);
     res.status(500).json({

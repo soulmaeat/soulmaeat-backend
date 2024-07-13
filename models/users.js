@@ -87,6 +87,14 @@ const postSchema = new Schema({
     type: [likeSchema],
     default: [],
   },
+  joinCount: {
+    type: Number,
+    default: null,
+  },
+  joinUser: {
+    type: [String],
+    default: [],
+  },
   createAt: {
     type: Date,
     default: Date.now,
@@ -150,7 +158,7 @@ const userSchema = new Schema({
   },
   joinCount: {
     type: Number,
-    default: null,
+    default: 1,
   },
   joinedAt: {
     type: Date,
