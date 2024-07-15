@@ -141,15 +141,15 @@ router.put("/addaddres", authenticateToken, async (req, res) => {
 });
 
 // 소울 페이 금액 추가
-router.put("/charge", authenticateToken, async (req, res) => {
+router.put("/charge", async (req, res) => {
   try {
-    const { email, soulpay } = req.body;
+    const { userId, soulpay } = req.body;
 
     console.log(soulpay);
 
     const updatedUser = await User.findOneAndUpdate(
-      { email },
-      { $set: { soulpay } },
+      { userId: userId },
+      { $set: { soulpay: soulpay } },
       { new: true }
     );
 

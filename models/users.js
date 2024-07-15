@@ -89,7 +89,7 @@ const postSchema = new Schema({
   },
   joinCount: {
     type: Number,
-    default: null,
+    default: 1,
   },
   joinUser: {
     type: [String],
@@ -105,17 +105,6 @@ const preferenceSchema = new Schema({
   PreferenceList: {
     type: [String],
     default: [],
-  },
-});
-
-const chargeSchema = new Schema({
-  payment: {
-    type: Number,
-    default: 0,
-  },
-  paymentId: {
-    type: String,
-    default: () => uuid(),
   },
 });
 
@@ -153,8 +142,8 @@ const userSchema = new Schema({
     default: [],
   },
   soulpay: {
-    type: [chargeSchema],
-    default: [],
+    type: Number,
+    default: 0,
   },
   joinCount: {
     type: Number,
@@ -169,7 +158,7 @@ const userSchema = new Schema({
 const User = mongoose.model("User", userSchema);
 const Preference = mongoose.model("Preference", preferenceSchema);
 const Like = mongoose.model("Like", likeSchema);
-const Charge = mongoose.model("Charge", chargeSchema);
+// const Charge = mongoose.model("Charge", chargeSchema);
 const Post = mongoose.model("Write", postSchema);
 
-module.exports = { User, Preference, Like, Charge, Post };
+module.exports = { User, Preference, Like, Post };
